@@ -1,0 +1,54 @@
+{% extends 'hospital/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1>Hospitals</h1>
+<div>
+<div>
+<div class="container">
+<div class="row">
+
+<div class="col-4">
+<div class="card m-2" style="width: 18rem;">
+<div class="card-header">
+</div>
+<br>
+<!--<div class="card-header">-->
+</div>
+    <div class="flex-container" style="display: flex;
+  background-color: DodgerBlue;">
+    {% for hospital in hospitals %}
+        <div class="dastan" style="margin: 10px;
+  padding: 40px;
+    ">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">ФИО Главного врача: {{hospital.head_doctor.full_name}}</li>
+        </ul>
+
+        <ul class="list-group list-group-flush">
+            {% for doctor in hospital.doctors.all %}
+                <li class="list-group-item">ФИО Врача: {{doctor.full_name}}</li>
+                <li class="list-group-item">Специальность: {{doctor.occupation}}</li>
+                <li class="list-group-item">Опыт работы: {{doctor.experience}}</li>
+                <li class="list-group-item">Заместитель: {{doctor.nurse.full_name}}</li>
+                <li class="list-group-item">Номер телефона: {{doctor.nurse.telephone}}</li>
+                <li class="list-group-item">Пациентов в очереди: {{doctor.patients.count}}</li>
+            {% endfor %}
+        </ul>
+            </div>
+    {% endfor %}
+    </div>
+
+</div>
+</div>
+{% endblock %}
